@@ -11,17 +11,17 @@ const App = () => {
         setInputList(event.target.value);
     };
 
-    const listofitem = () =>{
+    const listofitem = () => {
         setItems((oldItems) => {
             return [...oldItems, inputList];
         })
-    }; 
+    };
 
-    const deleteItem = (id) =>{
+    const deleteItem = (id) => {
         console.log("deleted");
 
-        setItems((oldItems) =>{
-            return oldItems.filter((arrElem, index) =>{
+        setItems((oldItems) => {
+            return oldItems.filter((arrElem, index) => {
                 return index !== id;
             });
         });
@@ -36,18 +36,19 @@ const App = () => {
                     <br />
                     <input type="text" placeholder="Add Items" onChange={itemEvent} />
                     <button onClick={listofitem}> + </button>
-
-                    <ol>
-                        {/* <li>{inputList}</li> */}
-                        {items.map( (itemval, index) =>{
-                           return <Todolist 
-                               key={index} 
-                               id={index}
-                               text = {itemval}
-                               onSelect = {deleteItem}
-                           />;
-                        } )}
-                    </ol>
+                    <div className="scroll-trans">
+                        <ol>
+                            {/* <li>{inputList}</li> */}
+                            {items.map((itemval, index) => {
+                                return <Todolist
+                                    key={index}
+                                    id={index}
+                                    text={itemval}
+                                    onSelect={deleteItem}
+                                />;
+                            })}
+                        </ol>
+                    </div>
                 </div>
             </div>
         </>
